@@ -77,11 +77,11 @@ int main(int argc, char *argv[])
 	char *buffer = NULL;
 	size_t size = 0;
 
-        if (argc != 2)
-        {
-                fprintf(stderr, "USAGE: monty file\n");
-                exit(EXIT_FAILURE);
-        }
-        enterfile(argv[1], buffer, size);
-        return (0);
+	if (argc != 2)
+	{
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
+	enterfile(argv[1], buffer, size);
+	return (0);
 }
