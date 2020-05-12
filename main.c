@@ -1,7 +1,45 @@
 #include "monty.h"
+
+/**
+ * tokenize - Tokenize a line in to tokens, only get two first tokens
+ * @buffer: Buffer
+ * Return:  Tokens, or NULL if failed
+ */
+
+char **tokenize(char *buffer)
+{
+	char *token, **tokens;
+	unsigned int i;
+
+	tokens = malloc(sizeof(char *) * 3);
+	if (tokens == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	token = strtok(buffer, " '\n'");
+	if (token == NULL)
+	{
+		free(tokens);
+		return (NULL);
+	}
+	i = 0;
+	while (token != NULL && i < 2)
+	{
+		tokens[i] = token;
+		token = strtok(NULL, " '\n'");
+		i++;
+	}
+	tokens[i] = NULL;
+	return (tokens);
+}
+
 /**
  * enterfile - Enter and read the monty file
  * @montyfile: Monty file
+ * @buffer: Buffer
+ * @size: Size of the buffer
+ * Return: void
  */
 
 void enterfile(char *montyfile, char *buffer, size_t size)
@@ -9,7 +47,7 @@ void enterfile(char *montyfile, char *buffer, size_t size)
 	FILE *file;
 	int line_num = 0;
 	stack_t *stack = NULL;
-	char *token;
+	char **tokens;
 
 	file = fopen(montyfile, "r");
 	if (file == NULL)
@@ -19,10 +57,10 @@ void enterfile(char *montyfile, char *buffer, size_t size)
 	}
 	while (getline(&buffer, &size, file) != -1)
 	{
-		token = strtok(buffer, " \t");
-		if (token[0] != '\n')
-			get_op(&stack, token, line_num);
 		line_num++;
+		tokens = tokenize(buffer);
+		if (tokens != NULL)
+			get_op(&stack, tokens, line_num);
 	}
 	fclose(file);
 }
