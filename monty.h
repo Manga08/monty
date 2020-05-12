@@ -51,4 +51,6 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+void get_op(stack_s stack, char token, int line_num);
+
 #endif /* MONTY_H */
