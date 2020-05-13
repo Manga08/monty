@@ -66,7 +66,7 @@ void enterfile(char *montyfile, char *buffer, size_t size)
 			get_op(tokens, line_num)(&stack, line_num);
 	}
 	fclose(file);
-	if(read != -1)
+	if(read == -1)
 		free(buffer);
 	free_function(&stack);
 }
