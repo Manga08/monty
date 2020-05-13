@@ -1,5 +1,9 @@
 #include "monty.h"
-
+/**
+ * valid_num - Validate the token.
+ * @token: The head.
+ * Return: 0 if it succeeded, 1 if it failed.
+ */
 int valid_num(char *token)
 {
 	unsigned int i;
@@ -36,12 +40,17 @@ int valid_num(char *token)
 	}
 	return (0);
 }
+//int arg = 0;
 
-int arg = 0;
-
-
+/**
+ * get_op - Get the different operations in the monty file.
+ * @tokens: The token.
+ * @line_num: The current number of the line.
+ * Return: 1 if it succeeded, -1 if it failed.
+ */
 void(*get_op(char **tokens, unsigned int line_num))(stack_t **, unsigned int)
 {
+//	arg = 0;
 	instruction_t func_arr[] = {
 		{"push", push_op},
 		{"pall", pall_op},
@@ -49,7 +58,7 @@ void(*get_op(char **tokens, unsigned int line_num))(stack_t **, unsigned int)
 	};
 	int i = 0;
 
-	while(func_arr[i].opcode != NULL)
+	while (func_arr[i].opcode != NULL)
 	{
 		if ((strcmp(func_arr[i].opcode, tokens[0]) == 0))
 		{
@@ -57,7 +66,7 @@ void(*get_op(char **tokens, unsigned int line_num))(stack_t **, unsigned int)
 			   (tokens[1] == NULL || ((valid_num(tokens[1]) == 0))))
 			{
 				free(tokens);
-				fprintf(stderr,"L%d: usage: push integer", line_num);
+				fprintf(stderr, "L%d: usage: push integer", line_num);
 			}
 			else if ((strcmp(func_arr[i].opcode, "push") == 0))
 				arg = atoi(tokens[1]);
