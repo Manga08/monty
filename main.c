@@ -48,7 +48,6 @@ void enterfile(char *montyfile, char *buffer, size_t size)
 	unsigned int line_num = 0;
 	stack_t *stack = NULL;
 	char **tokens;
-	ssize_t read;
 
 	file = fopen(montyfile, "r");
 	if (file == NULL)
@@ -56,7 +55,7 @@ void enterfile(char *montyfile, char *buffer, size_t size)
 		fprintf(stderr, "Error: Can't open file %s\n", montyfile);
 		exit(EXIT_FAILURE);
 	}
-	while ((read = getline(&buffer, &size, file)) != -1)
+	while (getline(&buffer, &size, file) != -1)
 	{
 		line_num++;
 		tokens = tokenize(buffer);
@@ -66,8 +65,7 @@ void enterfile(char *montyfile, char *buffer, size_t size)
 			get_op(tokens, line_num)(&stack, line_num);
 	}
 	fclose(file);
-	if(read == -1)
-		free(buffer);
+	free(buffer);
 	free_function(&stack);
 }
 
