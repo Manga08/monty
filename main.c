@@ -45,7 +45,7 @@ char **tokenize(char *buffer)
 void enterfile(char *montyfile, char *buffer, size_t size)
 {
 	FILE *file;
-	int line_num = 0;
+	unsigned int line_num = 0;
 	stack_t *stack = NULL;
 	char **tokens;
 
@@ -60,7 +60,7 @@ void enterfile(char *montyfile, char *buffer, size_t size)
 		line_num++;
 		tokens = tokenize(buffer);
 		if (tokens != NULL)
-			get_op(&stack, tokens, line_num);
+			get_op(tokens, line_num)(&stack, line_num);
 	}
 	fclose(file);
 }
