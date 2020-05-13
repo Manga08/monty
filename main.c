@@ -59,7 +59,9 @@ void enterfile(char *montyfile, char *buffer, size_t size)
 	{
 		line_num++;
 		tokens = tokenize(buffer);
-		if (tokens != NULL)
+		if (tokens == NULL)
+			continue;
+		else
 			get_op(tokens, line_num)(&stack, line_num);
 	}
 	fclose(file);
