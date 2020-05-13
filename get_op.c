@@ -1,5 +1,27 @@
 #include "monty.h"
 /**
+ * free_function - Free the memory of the linked list.
+ * @stack: The token.
+ * Return: 0
+ */
+void free_function(stack_t **stack)
+{
+	stack_t *temp;
+
+	if (*stack == NULL)
+		return;
+	while (*stack != NULL)
+	{
+		temp = (*stack)->next;
+		free(*stack);
+		if (temp == NULL)
+			return;
+		temp->prev = NULL;
+		*stack = temp;
+	}
+	free(*stack);
+}
+/**
  * valid_num - Validate the token.
  * @token: The head.
  * Return: 0 if it succeeded, 1 if it failed.
@@ -40,7 +62,7 @@ int valid_num(char *token)
 	}
 	return (0);
 }
-//int arg = 0;
+int arg = 0;
 
 /**
  * get_op - Get the different operations in the monty file.
@@ -50,7 +72,6 @@ int valid_num(char *token)
  */
 void(*get_op(char **tokens, unsigned int line_num))(stack_t **, unsigned int)
 {
-//	arg = 0;
 	instruction_t func_arr[] = {
 		{"push", push_op},
 		{"pall", pall_op},
@@ -78,22 +99,4 @@ void(*get_op(char **tokens, unsigned int line_num))(stack_t **, unsigned int)
 	fprintf(stderr, "L%d: unknown instruction %s\n", line_num, tokens[0]);
 	free(tokens);
 	exit(EXIT_FAILURE);
-}
-
-void free_function(stack_t **stack)
-{
-	stack_t *temp;
-
-	if (*stack == NULL)
-		return;
-	while (*stack != NULL)
-	{
-		temp = (*stack)->next;
-		free(*stack);
-		if (temp == NULL)
-			return;
-		temp->prev = NULL;
-		*stack = temp;
-	}
-	free(*stack);
 }

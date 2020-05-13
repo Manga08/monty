@@ -41,6 +41,7 @@ typedef struct instruction_s
 } instruction_t;
 
 extern int arg;
+
 void(*get_op(char **tokens, unsigned int line_num))(stack_t **, unsigned int);
 char **tokenize(char *buffer);
 void enterfile(char *montyfile, char *buffer, size_t size);

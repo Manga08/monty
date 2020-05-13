@@ -1,5 +1,9 @@
 #include "monty.h"
-
+/**
+ * push_op - Pushes an element to the stack.
+ * @stack: The stack.
+ * @line_number: The current line number.
+ */
 void push_op(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node;
@@ -21,7 +25,11 @@ void push_op(stack_t **stack, unsigned int line_number)
 	if (new_node->next != NULL)
 		new_node->next->prev = new_node;
 }
-
+/**
+ * pall_op - Prints all the values on the stack.
+ * @stack: The stack.
+ * @line_number: The current line number.
+ */
 void pall_op(stack_t **stack, unsigned int line_number)
 {
 	const stack_t *ptr;
