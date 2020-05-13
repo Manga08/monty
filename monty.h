@@ -11,17 +11,6 @@
 #include <ctype.h>
 
 /**
- * struct global_s - file pointer and argument
- * @fp: file pointers
- * @queue: 0 if stack (LIFO), 1 if queue (FIFO)
- */
-typedef struct global_s
-{
-	FILE *fp;
-	int queue;
-} global_t;
-
-/**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
  * @prev: points to the previous element of the stack (or queue)
@@ -51,6 +40,13 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void get_op(stack_t **stack, char **tokens, int line_num);
+extern int arg;
+void(*get_op(char **tokens, unsigned int line_num))(stack_t **, unsigned int);
+char **tokenize(char *buffer);
+void enterfile(char *montyfile, char *buffer, size_t size);
+int valid_num(char *token);
+void push_op(stack_t **stack, unsigned int line_number);
+void pall_op(stack_t **stack, unsigned int line_number);
+
 
 #endif /* MONTY_H */
