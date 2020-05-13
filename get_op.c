@@ -70,3 +70,21 @@ void(*get_op(char **tokens, unsigned int line_num))(stack_t **, unsigned int)
 	free(tokens);
 	exit(EXIT_FAILURE);
 }
+
+void free_function(stack_t **stack)
+{
+	stack_t *temp;
+
+	if (*stack == NULL)
+		return;
+	while (*stack != NULL)
+	{
+		temp = (*stack)->next;
+		free(*stack);
+		if (temp == NULL)
+			return;
+		temp->prev = NULL;
+		*stack = temp;
+	}
+	free(*stack);
+}
