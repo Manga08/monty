@@ -62,6 +62,7 @@ int valid_num(char *token)
 	}
 	return (0);
 }
+
 int arg = 0;
 
 /**
