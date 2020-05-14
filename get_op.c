@@ -95,7 +95,7 @@ void(*get_op(char **tokens, unsigned int line_num))(stack_t **, unsigned int)
 			   (tokens[1] == NULL || (!(valid_num(tokens[1])))))
 			{
 				free(tokens);
-				fprintf(stderr, "L%d: usage: push integer", line_num);
+				fprintf(stderr, "L%d: usage: push integer\n", line_num);
 				exit(EXIT_FAILURE);
 			}
 			else if ((strcmp(func_arr[i].opcode, "push") == 0))
