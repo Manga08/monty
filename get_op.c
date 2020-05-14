@@ -81,12 +81,18 @@ void(*get_op(char **tokens, unsigned int line_num))(stack_t **, unsigned int)
 	};
 	int i = 0;
 
+	if (tokens[0][0] == '#')
+	{
+		free(tokens);
+		return (op_nop);
+	}
+
 	while (func_arr[i].opcode != NULL)
 	{
 		if ((strcmp(func_arr[i].opcode, tokens[0]) == 0))
 		{
 			if ((strcmp(func_arr[i].opcode, "push") == 0) &&
-			   (tokens[1] == NULL || ((valid_num(tokens[1]) == 0))))
+			   (tokens[1] == NULL || (!(valid_num(tokens[1])))))
 			{
 				free(tokens);
 				fprintf(stderr, "L%d: usage: push integer", line_num);
