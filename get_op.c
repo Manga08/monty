@@ -1,3 +1,4 @@
+
 #include "monty.h"
 /**
  * free_function - Free the memory of the linked list.
@@ -82,7 +83,7 @@ void(*get_op(char **tokens, unsigned int line_num))(stack_t **, unsigned int)
 	};
 	unsigned int i = 0;
 
-	if (tokens[0][0] == '#' && tokens[0])
+	if (tokens[0][0] == '#')
 	{
 		free(tokens);
 		return (nop_op);
