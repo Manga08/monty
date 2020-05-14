@@ -79,7 +79,7 @@ void(*get_op(char **tokens, unsigned int line_num))(stack_t **, unsigned int)
 		{"nop", nop_op},
 		{NULL, NULL},
 	};
-	int i = 0;
+	unsigned int i = 0;
 
 	if (tokens[0][0] == '#')
 	{
@@ -96,6 +96,7 @@ void(*get_op(char **tokens, unsigned int line_num))(stack_t **, unsigned int)
 			{
 				free(tokens);
 				fprintf(stderr, "L%d: usage: push integer", line_num);
+				exit(EXIT_FAILURE);
 			}
 			else if ((strcmp(func_arr[i].opcode, "push") == 0))
 				arg = atoi(tokens[1]);
