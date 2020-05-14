@@ -84,7 +84,7 @@ void(*get_op(char **tokens, unsigned int line_num))(stack_t **, unsigned int)
 	if (tokens[0][0] == '#')
 	{
 		free(tokens);
-		return (op_nop);
+		return (nop_op);
 	}
 
 	while (func_arr[i].opcode != NULL)
