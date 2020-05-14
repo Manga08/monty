@@ -75,6 +75,7 @@ void(*get_op(char **tokens, unsigned int line_num))(stack_t **, unsigned int)
 	instruction_t func_arr[] = {
 		{"push", push_op},
 		{"pall", pall_op},
+		{"pint", pint_op},
 		{NULL, NULL},
 	};
 	int i = 0;

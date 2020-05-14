@@ -44,3 +44,19 @@ void pall_op(stack_t **stack, unsigned int line_number)
 		ptr = ptr->next;
 	}
 }
+/**
+ * pint_op - Prints the value at the top of the stack.
+ * @stack: The stack.
+ * @line_number: The current line number.
+ * Return: void
+ */
+void pint_op(stack_t **stack, unsigned int line_number)
+{
+	if (*stack)
+		printf("%d\n", (*stack)->n);
+	else
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+}
