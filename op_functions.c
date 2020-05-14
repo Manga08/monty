@@ -48,7 +48,6 @@ void pall_op(stack_t **stack, unsigned int line_number)
  * pint_op - Prints the value at the top of the stack.
  * @stack: The stack.
  * @line_number: The current line number.
- * Return: void
  */
 void pint_op(stack_t **stack, unsigned int line_number)
 {
@@ -57,6 +56,29 @@ void pint_op(stack_t **stack, unsigned int line_number)
 	else
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+}
+/**
+ * pop_op - Removes the top element of the stack.
+ * @stack: The stack.
+ * @line_number: The current line number.
+ */
+void pop_op(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp;
+
+	if (*stack)
+	{
+		temp = *stack;
+		if ((*stack)->next)
+			(*stack)->next->prev = NULL;
+		*stack = (*stack)->next;
+		free(temp);
+	}
+	else
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack", line_number);
 		exit(EXIT_FAILURE);
 	}
 }

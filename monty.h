@@ -49,6 +49,7 @@ int valid_num(char *token);
 void push_op(stack_t **stack, unsigned int line_number);
 void pall_op(stack_t **stack, unsigned int line_number);
 void pint_op(stack_t **stack, unsigned int line_number);
+void pop_op(stack_t **stack, unsigned int line_number);
 void free_function(stack_t **stack);
 
 #endif /* MONTY_H */
