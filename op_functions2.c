@@ -32,3 +32,26 @@ void nop_op(stack_t **stack, unsigned int line_number)
 	(void) stack;
 	(void) line_number;
 }
+/**
+ * op_sub - Subtracts the top element of the stack.
+ * @stack: The stack.
+ * @line_number: The current line number.
+ */
+void sub_op(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp;
+
+	if (*stack && (*stack)->next)
+	{
+		(*stack)->next->n -= (*stack)->n;
+		temp = *stack;
+		*stack = (*stack)->next;
+		(*stack)->prev = NULL;
+		free(temp);
+	}
+	else
+	{
+		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+}
