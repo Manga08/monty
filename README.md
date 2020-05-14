@@ -17,11 +17,7 @@
 * [Authors](#authors)
 
 ## About
-This repository contains example projects using lower level programming languages like C. In these projects we learned how to:
-  - compile code and process of compilation
-  - creating and using libraries
-  - using header files
-  - bash scripting
+The goal of this project is to create an interpreter for Monty ByteCodes files.
 
 ## Requirements
 * Ubuntu 14.04 LTS
@@ -195,6 +191,12 @@ $ ./executable_file 04.m
   * `sub_op` - Subtracts the top element of the stack.
   * `div_op` - Divides the top two elements of the stack.
   * `mul_op` - Multiplies the top two elements of the stack.
+* [op_functions3.c](op_functions3.c) - List of another fucntions of the commands.
+  * `mod_op` - Computes division remainder from top two stack elements.
+  * `pchar_op` - Prints the char at the top of the stack.
+  * `pstr_op` - Prints the string starting at the top of the stack.
+  * `rotl_op` - Rotates the stack to the top.
+  * `rotr_op` - Rotates the stack to the bottom.
 
 ## Authors
 ### - Manuel Acero 

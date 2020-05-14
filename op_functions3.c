@@ -58,16 +58,15 @@ void rotl_op(stack_t **stack, unsigned int line_number)
 
 	(void) line_number;
 
-	if (*stack && (*stack)->next)
-	{
-		while (temp->next)
-			temp = temp->next;
-		temp->next = *stack;
-		(*stack)->prev = temp;
-		*stack = (*stack)->next;
-		(*stack)->prev->next = NULL;
-		(*stack)->prev = NULL;
-	}
+	if (!stack || !*stack || !(*stack)->next)
+		return;
+
+	while (temp->next)
+		temp = temp->next;
+	temp->next = *stack;
+	(*stack) = (*stack)->next;
+	temp->next->next = NULL;
+	temp->next->prev = temp;
 }
 /**
  * rotr_op - Rotates the stack to the bottom.
@@ -80,14 +79,15 @@ void rotr_op(stack_t **stack, unsigned int line_number)
 
 	(void) line_number;
 
-	if (*stack && (*stack)->next != NULL)
-	{
-		while (temp->next != NULL)
-			temp = temp->next;
-		temp->next = *stack;
-		(*stack)->prev = temp;
-		temp->prev->next = NULL;
-		temp->prev = NULL;
-		*stack = temp;
-	}
+	if (!stack || !*stack || !(*stack)->next)
+		return;
+
+	temp = *stack;
+	while (temp->next)
+		temp = temp->next;
+	temp->next = *stack;
+	temp->prev->next = NULL;
+	temp->prev = NULL;
+	(*stack)->prev = temp;
+	*stack = temp;
 }
