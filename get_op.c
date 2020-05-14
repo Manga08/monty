@@ -81,12 +81,11 @@ void(*get_op(char **tokens, unsigned int line_num))(stack_t **, unsigned int)
 	};
 	unsigned int i = 0;
 
-	if (tokens[0][0] == '#')
+	if (tokens[0][0] == '#' && tokens[0])
 	{
 		free(tokens);
 		return (nop_op);
 	}
-
 	while (func_arr[i].opcode != NULL)
 	{
 		if ((strcmp(func_arr[i].opcode, tokens[0]) == 0))
