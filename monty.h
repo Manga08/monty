@@ -44,7 +44,7 @@ extern int arg;
 
 void(*get_op(char **tokens, unsigned int line_num))(stack_t **, unsigned int);
 char **tokenize(char *buffer);
-void enterfile(char *montyfile, char *buffer, size_t size);
+void enterfile(char *montyfile);
 int valid_num(char *token);
 void push_op(stack_t **stack, unsigned int line_number);
 void pall_op(stack_t **stack, unsigned int line_number);

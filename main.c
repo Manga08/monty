@@ -37,13 +37,12 @@ char **tokenize(char *buffer)
 /**
  * enterfile - Enter and read the monty file
  * @montyfile: Monty file
- * @buffer: Buffer
- * @size: Size of the buffer
- * Return: void
  */
 
-void enterfile(char *montyfile, char *buffer, size_t size)
+void enterfile(char *montyfile)
 {
+	size_t size = 0;
+	char *buffer = NULL;
 	FILE *file;
 	unsigned int line_num = 0;
 	stack_t *stack = NULL;
@@ -78,14 +77,11 @@ void enterfile(char *montyfile, char *buffer, size_t size)
 
 int main(int argc, char *argv[])
 {
-	char *buffer = NULL;
-	size_t size = 0;
-
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	enterfile(argv[1], buffer, size);
+	enterfile(argv[1]);
 	return (0);
 }
