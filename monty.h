@@ -54,6 +54,7 @@ void swap_op(stack_t **stack, unsigned int line_number);
 void add_op(stack_t **stack, unsigned int line_number);
 void nop_op(stack_t **stack, unsigned int line_number);
 void sub_op(stack_t **stack, unsigned int line_number);
+void div_op(stack_t **stack, unsigned int line_number);
 void free_function(stack_t **stack);
 
 #endif /* MONTY_H */
