@@ -77,6 +77,7 @@ void(*get_op(char **tokens, unsigned int line_num))(stack_t **, unsigned int)
 		{"pall", pall_op},
 		{"pint", pint_op},
 		{"pop", pop_op},
+		{"swap", swap_op},
 		{NULL, NULL},
 	};
 	int i = 0;
