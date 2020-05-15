@@ -34,8 +34,20 @@ void mod_op(stack_t **stack, unsigned int line_number)
  */
 void pchar_op(stack_t **stack, unsigned int line_number)
 {
-	(void) line_number;
-	(void) stack;
+	int x = 0;
+
+	if (*stack == NULL || stack == NULL)
+		fprintf(stderr, "L%d: can't pchar, stack empty\n", line_number);
+	x = (*stack)->n;
+	if (x >= 1 && x <= 127)
+	{
+		putchar(x);
+		putchar('\n');
+	}
+	else
+	{
+		fprintf(stderr, "L%d: can't pchar, value out of range", line_number);
+	}
 }
 /**
  * pstr_op - Prints the string starting at the top of the stack.
