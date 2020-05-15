@@ -37,7 +37,10 @@ void pchar_op(stack_t **stack, unsigned int line_number)
 	int x = 0;
 
 	if (*stack == NULL || stack == NULL)
+	{
 		fprintf(stderr, "L%d: can't pchar, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 	x = (*stack)->n;
 	if (x >= 1 && x <= 127)
 	{
@@ -47,6 +50,7 @@ void pchar_op(stack_t **stack, unsigned int line_number)
 	else
 	{
 		fprintf(stderr, "L%d: can't pchar, value out of range", line_number);
+		exit(EXIT_FAILURE);
 	}
 }
 /**
