@@ -60,8 +60,26 @@ void pchar_op(stack_t **stack, unsigned int line_number)
  */
 void pstr_op(stack_t **stack, unsigned int line_number)
 {
-	(void) line_number;
-	(void) stack;
+	stack_t *temp;
+	int x = 0;
+
+	(void)line_number;
+	if (*stack == NULL || stack == NULL)
+		putchar('\n');
+	else
+	{
+		temp = *stack;
+		while (temp != NULL)
+		{
+			x = temp->n;
+			if (x >= 1 && x <= 127)
+				putchar(x);
+			else
+				break;
+			temp = temp->next;
+		}
+		putchar('\n');
+	}
 }
 /**
  * rotl_op - Rotates the stack to the top.
